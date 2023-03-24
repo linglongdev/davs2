@@ -1,0 +1,31 @@
+package:
+  id: davs2
+  name: davs2
+  version: 1.7.1
+  kind: lib
+  description: |
+    davs2.
+
+base:
+  id: org.deepin.base
+  version: 20.5.0
+
+source:
+  kind: git
+  url: https://github.com/deepin-community/davs2.git
+  version: uos
+  commit: 99c3e47871b0168d6afae2e5eeff1aabfc700658
+  patch:
+  - 1001_allow_preseeded_revision.patch
+variables:
+  extra_args: |
+    --enable-shared \
+    --enable-pic \
+    --disable-asm
+
+build:
+  kind: autotools
+  manual:
+    configure: |
+      cd build/linux 
+      ./configure ${conf_args} ${extra_args} 
